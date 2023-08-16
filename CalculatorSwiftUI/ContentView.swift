@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var result: String = "abc"
+    
+    private let model: [ContentRowButtonsModel] = contentViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack(alignment: .trailing, spacing: 1) {
+            Text(result)
+                .padding()
+                .font(.largeTitle)
+                .frame(height: 80)
+                .background(Color.black)
+                .foregroundColor(Color.white)
+            ForEach(model, id: \.self) { model in
+                ContentRowButtonsView(model: model)
+            }
         }
+        .frame(maxWidth: .infinity)
+        .background(Color.black)
+        .foregroundColor(Color.white)
         .padding()
     }
 }
